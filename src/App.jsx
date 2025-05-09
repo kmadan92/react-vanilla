@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import auth from './services/auth.js';
-import Header from './components/Header.jsx';
+import {Header,Image} from './components/index.js';
 import { login, logout } from './store/authSlice.js';
 
 function App() {
@@ -13,8 +13,10 @@ function App() {
        auth.getCurrentUser().then(
         (userData)=> {if (userData) {
           dispatch(login({ userData }));
+          
         } else {
           dispatch(logout());
+          
         }
       }).finally(()=>setLoading(false));
 
@@ -25,7 +27,15 @@ function App() {
       <Header />
       <div>This is the page</div>
     </>
-  ) : null;
+  ) : (
+    <div className="w-screen h-screen flex flex-col items-center justify-center">
+    
+    <Image 
+    src="https://i.gifer.com/8CLc.gif"
+    className='h-25'
+    />
+    </div>
+  );
 }
 
 export default App;

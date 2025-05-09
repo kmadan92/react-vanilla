@@ -47,7 +47,7 @@ class AuthenticationService {
 
       return user;
     } catch (error) {
-      //console.warn('No user session found:');
+      console.warn('Inside catch.....No user session found:');
       return null;
     }
   }

@@ -1,28 +1,30 @@
-import { useState } from "react";
+import { useState } from 'react';
 
+export default function Button({
+  children,
+  className = '',
+  type = 'button',
+  OnClick,
+  ...props
+}) {
+  const [clicked, setClicked] = useState(false);
 
-export default function Button({children,className="",...props}) {
+  const handleClick = (e) => {
+    setClicked(true);
 
-    const [clicked, setClicked] = useState(false);
+    OnClick?.(e);
+  };
 
-    const handleClick = (e) =>{
-        setClicked(true)
-
-        if(props.onClick)
-            props.onClick(e)
-    }
-
-    return (
-      <>
-       <button
-       type="button"
-       className={clicked?'text-white underline  font-bold text-lg': 'text-white hover:underline hover:text-lg duration-200 transition-all'}
-       onClick={handleClick}
-       {...props}
-       >
+  return (
+    <>
+      <button
+        type="button"
+        className={`${className} ${clicked ? 'text-white text-xl hover:text-2xl duration-300 ease-in-out font-bold' : 'text-xl text-white font-bold hover:text-2xl duration-300 transition-all ease-in-out'}`}
+        onClick={handleClick}
+        {...props}
+      >
         {children}
-       </button>
-      </>
-    );
-  }
-  
+      </button>
+    </>
+  );
+}

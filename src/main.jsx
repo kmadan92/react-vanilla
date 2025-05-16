@@ -5,14 +5,20 @@ import App from './App.jsx';
 import { Provider } from 'react-redux';
 import store from './store/store.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Login } from './pages/index.js';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
-  }
-  
-])
+    element: <App />,
+    children: [
+      {
+        path: 'signin',
+        element: <Login />,
+      },
+    ],
+  },
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

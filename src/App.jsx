@@ -1,39 +1,35 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import auth from './services/auth.js';
-import {Header,Image} from './components/index.js';
+import { Header, Image } from './components/index.js';
 import { login, logout } from './store/authSlice.js';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    
-       auth.getCurrentUser().then(
-        (userData)=> {if (userData) {
+    auth
+      .getCurrentUser()
+      .then((userData) => {
+        if (userData) {
           dispatch(login({ userData }));
-          
         } else {
           dispatch(logout());
-          
         }
-      }).finally(()=>setLoading(false));
-
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   return !loading ? (
     <>
       <Header />
-      <div>This is the page</div>
+      <Outlet />
     </>
   ) : (
     <div className="w-screen h-screen flex flex-col items-center justify-center">
-    
-    <Image 
-    src="https://i.gifer.com/8CLc.gif"
-    className='h-25'
-    />
+      <Image src="https://i.gifer.com/8CLc.gif" className="h-25" />
     </div>
   );
 }

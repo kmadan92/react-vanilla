@@ -18,7 +18,7 @@ export default function Button({
   return (
     <>
       <button
-        type="button"
+        type={`${type}`}
         className={`${className} ${clicked ? 'text-white text-xl hover:text-2xl duration-300 ease-in-out font-bold' : 'text-xl text-white font-bold hover:text-2xl duration-300 transition-all ease-in-out'}`}
         onClick={handleClick}
         {...props}

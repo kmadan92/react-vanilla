@@ -13,13 +13,13 @@ class AuthenticationService {
     this.account = new Account(this.client);
   }
 
-  async createAccount({ username, password, email }) {
+  async createAccount({ username, email, password }) {
     try {
       const userAccount = await this.account.create(
         ID.unique(),
-        username,
+        email,
         password,
-        email
+        username
       );
 
       return userAccount;

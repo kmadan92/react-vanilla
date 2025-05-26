@@ -4,10 +4,12 @@ import auth from './services/auth.js';
 import { Header, Image } from './components/index.js';
 import { login, logout } from './store/authSlice.js';
 import { Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     auth
@@ -17,6 +19,7 @@ function App() {
           dispatch(login({ userData }));
         } else {
           dispatch(logout());
+          navigate("/signin")
         }
       })
       .finally(() => setLoading(false));

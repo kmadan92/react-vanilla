@@ -24,7 +24,8 @@ export default function Login() {
       dispatch(login(session));
       navigate('/');
     } else {
-      alert('Wrong Username or Password');
+        
+      alert(session);
     }
   };
 

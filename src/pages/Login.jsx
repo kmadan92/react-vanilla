@@ -13,20 +13,18 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const signin = async (data) => {
-    
-    const session = await auth.login(data)
-    console.log(session)
+    const session = await auth.login(data);
+    console.log(session);
 
-    if(session){
-            dispatch(login(session))
-            navigate("/")
-    }
-    else{
-        alert("Wrong Username or Password")
+    if (session) {
+      dispatch(login(session));
+      navigate('/');
+    } else {
+      alert('Wrong Username or Password');
     }
   };
 

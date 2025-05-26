@@ -17,15 +17,12 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const signup = async (data) => {
-   
-    const user = await auth.createAccount(data)
+    const user = await auth.createAccount(data);
 
-    if(user)
-    {
-        navigate("/signin")
-    }
-    else{
-        alert("Something Went Wrong")
+    if (user) {
+      navigate('/signin');
+    } else {
+      alert('Something Went Wrong');
     }
   };
 

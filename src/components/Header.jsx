@@ -63,11 +63,11 @@ export default function Header() {
           )}
         </nav>
 
-        <div className="flex-grow max-w-md ml-60">
+        <div className="flex-grow max-w-md ml-20">
           <input
             type="text"
-            placeholder="Ask Fleet Copilot..."
-            className="w-full px-4 py-2 rounded-2xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-200"
+            placeholder="Ask Debug Copilot..."
+            className="w-full p-4 rounded-2xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-200"
           />
         </div>
 

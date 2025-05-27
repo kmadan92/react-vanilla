@@ -12,7 +12,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Login, Signup, Dashboard, NewPost } from './pages/index.js';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -44,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: 'new-post',
         element: <NewPost />,
-      }
+      },
     ],
   },
 ]);
@@ -52,9 +51,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <RouterProvider router={router}></RouterProvider>
-    </Provider>
+      <Provider store={store}>
+        <RouterProvider router={router}></RouterProvider>
+      </Provider>
     </ThemeProvider>
   </StrictMode>
 );

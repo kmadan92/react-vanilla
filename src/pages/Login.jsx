@@ -24,7 +24,6 @@ export default function Login() {
       dispatch(login(session));
       navigate('/dashboard');
     } else {
-        
       alert(session);
     }
   };

@@ -17,10 +17,10 @@ function App() {
       .then((userData) => {
         if (userData) {
           dispatch(login({ userData }));
-          navigate("/dashboard")
+          navigate('/dashboard');
         } else {
           dispatch(logout());
-          navigate("/signin")
+          navigate('/signin');
         }
       })
       .finally(() => setLoading(false));

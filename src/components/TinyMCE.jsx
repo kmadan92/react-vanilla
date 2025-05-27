@@ -1,6 +1,7 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Controller } from 'react-hook-form';
+import conf from '../conf/conf.prod.js';
 
 export default function TinyMCE({name, control, label,...props}) {
   return (
@@ -13,7 +14,7 @@ export default function TinyMCE({name, control, label,...props}) {
     control={control}
     render={({field:{onChange}})=>(
 <Editor
-      apiKey='qwv7t3dr1wyzd6s58ii962lbn4amx0kpmoltgd5hwh0zuw19'
+      apiKey={conf.TinyMCE_API_KEY}
       init={{
         height:500,
         menubar: true,

@@ -9,7 +9,7 @@ import App from './App.jsx';
 import { Provider } from 'react-redux';
 import store from './store/store.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Login, Signup } from './pages/index.js';
+import { Login, Signup, Dashboard, NewPost } from './pages/index.js';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -37,6 +37,14 @@ const router = createBrowserRouter([
         path: 'signup',
         element: <Signup />,
       },
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
+      },
+      {
+        path: 'new-post',
+        element: <NewPost />,
+      }
     ],
   },
 ]);

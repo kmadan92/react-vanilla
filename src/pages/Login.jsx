@@ -22,7 +22,7 @@ export default function Login() {
 
     if (session) {
       dispatch(login(session));
-      navigate('/');
+      navigate('/dashboard');
     } else {
         
       alert(session);

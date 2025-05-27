@@ -10,7 +10,7 @@ export default function Header() {
   const navItems = [
     {
       name: 'Dashboard',
-      slug: '/',
+      slug: '/dashboard',
       active: userLoggedIn,
     },
     {

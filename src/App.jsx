@@ -17,6 +17,7 @@ function App() {
       .then((userData) => {
         if (userData) {
           dispatch(login({ userData }));
+          navigate("/dashboard")
         } else {
           dispatch(logout());
           navigate("/signin")

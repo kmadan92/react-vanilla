@@ -17,24 +17,26 @@ function App() {
       .then((userData) => {
         if (userData) {
           dispatch(login({ userData }));
-          navigate('/dashboard');
         } else {
           dispatch(logout());
-          navigate('/signin');
         }
       })
       .finally(() => setLoading(false));
   }, []);
 
-  return !loading ? (
+  if (loading) {
+    return (
+      <div className="w-screen h-screen flex flex-col items-center justify-center">
+        <Image src="https://i.gifer.com/8CLc.gif" className="h-25" />
+      </div>
+    );
+  }
+
+  return (
     <>
       <Header />
       <Outlet />
     </>
-  ) : (
-    <div className="w-screen h-screen flex flex-col items-center justify-center">
-      <Image src="https://i.gifer.com/8CLc.gif" className="h-25" />
-    </div>
   );
 }
 

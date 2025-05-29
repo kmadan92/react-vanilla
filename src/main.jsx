@@ -11,6 +11,7 @@ import store from './store/store.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Login, Signup, Dashboard, Post } from './pages/index.js';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ProtectedRoute } from './components/index.js';
 
 const theme = createTheme({
   palette: {
@@ -30,19 +31,35 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'signin',
-        element: <Login />,
+        element: (
+          <ProtectedRoute authentication={false}>
+            <Login />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'signup',
-        element: <Signup />,
+        element: (
+          <ProtectedRoute authentication={false}>
+            <Signup />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'dashboard',
-        element: <Dashboard />,
+        element: (
+          <ProtectedRoute authentication={true}>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'new-post',
-        element: <Post />,
+        element: (
+          <ProtectedRoute authentication={true}>
+            <Post />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

@@ -32,9 +32,9 @@ export default function Header() {
 
   return (
     <>
-      <div className="w-full px-4 py-4 flex items-center bg-blue-950">
+      <div className="w-full px-4 py-2 flex items-center bg-blue-950">
         {/* Logo */}
-        <div className=" text-2xl flex-col text-white">
+        <div className=" text-xl flex-col text-white">
           <Image
             src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg"
             alt="Microsoft Azure Logo"
@@ -67,7 +67,7 @@ export default function Header() {
           <input
             type="text"
             placeholder="Ask Debug Copilot..."
-            className="w-full p-4 rounded-2xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-200"
+            className="w-full p-3 rounded-2xl bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-200"
           />
         </div>
 

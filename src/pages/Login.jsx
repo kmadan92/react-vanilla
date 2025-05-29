@@ -1,7 +1,7 @@
 import { Button, Input } from '../components/index.js';
 import bg_image from '../images/login_bg.png';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import auth from '../services/auth.js';
 import { login } from '../store/authSlice.js';
@@ -14,6 +14,7 @@ export default function Login() {
   } = useForm();
 
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const signin = async (data) => {

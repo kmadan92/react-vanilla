@@ -18,7 +18,7 @@ export default function Login() {
 
   const signin = async (data) => {
     const session = await auth.login(data);
-    console.log(session);
+    //console.log(session);
 
     if (session) {
       dispatch(login(session));

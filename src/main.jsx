@@ -9,7 +9,7 @@ import App from './App.jsx';
 import { Provider } from 'react-redux';
 import store from './store/store.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Login, Signup, Dashboard, NewPost } from './pages/index.js';
+import { Login, Signup, Dashboard, Post } from './pages/index.js';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'new-post',
-        element: <NewPost />,
+        element: <Post />,
       },
     ],
   },

@@ -2,11 +2,11 @@ import React, { useEffect, useCallback } from 'react';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
-import { TinyMCE, Input } from '../components/index.js';
+import { TinyMCE, Input } from './index.js';
 import service from '../services/config.js';
 import { useSelector } from 'react-redux';
 
-export default function NewPost({ post }) {
+export default function PostForm({ post }) {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
 
@@ -39,14 +39,14 @@ export default function NewPost({ post }) {
         .replace(/\s/g, '-');
 
     return '';
-  },[]);
+  }, []);
 
   useEffect(() => {
     setValue('slug', slugTransform(title), { shouldValidate: true });
   }, [title, setValue, slugTransform]);
 
   const newPost = async (data) => {
-    console.log(data)
+    //console.log(data);
     if (post) {
       const file = data.featuredImage[0]
         ? await service.uploadFile(data.image[0])
@@ -95,9 +95,9 @@ export default function NewPost({ post }) {
               {...register('title', { required: 'Title is required' })}
             />
 
-{errors.title && (
-            <p className="text-red-500 text-sm">{errors.title.message}</p>
-          )}
+            {errors.title && (
+              <p className="text-red-500 text-sm">{errors.title.message}</p>
+            )}
 
             <TinyMCE
               name="content"
@@ -124,9 +124,9 @@ export default function NewPost({ post }) {
               //value={watch('slug')} //watch in jsx causes re render. so watch(title) does not cause rerender itself but because of useeffect but watch(slug) causes re render in itself
             />
 
-{errors.slug && (
-            <p className="text-red-500 text-sm">{errors.slug.message}</p>
-          )}
+            {errors.slug && (
+              <p className="text-red-500 text-sm">{errors.slug.message}</p>
+            )}
 
             <Input
               type="file"
@@ -138,9 +138,9 @@ export default function NewPost({ post }) {
               {...register('featuredImage', { required: 'Image is required' })}
             />
 
-{errors.image && (
-            <p className="text-red-500 text-sm">{errors.image.message}</p>
-          )}
+            {errors.image && (
+              <p className="text-red-500 text-sm">{errors.image.message}</p>
+            )}
           </div>
         </div>
         <div className="w-full flex justify-center items-center m-5">
@@ -149,7 +149,7 @@ export default function NewPost({ post }) {
             control={control}
             render={({ field: { onSubmit } }) => (
               <Button
-              type="submit"
+                type="submit"
                 variant="contained"
                 size="large"
                 sx={{

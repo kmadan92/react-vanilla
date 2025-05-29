@@ -8,6 +8,7 @@ function Input(
     inputClassname = '',
     labelChildren,
     onChange,
+    value,
     ...props
   },
   ref
@@ -23,6 +24,8 @@ function Input(
         type={`${type}`}
         id={`${htmlFor}`}
         className={`${inputClassname}`}
+        onChange={onChange}
+        value={value}
         ref={ref}
         {...props}
       />

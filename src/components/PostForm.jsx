@@ -24,7 +24,7 @@ export default function PostForm({ post }) {
       content: post?.post.content || '',
       featuredImage: post?.post.featuredImage || '',
       status: post?.post.status || 'active',
-      userId: post?.post.userId || '',
+      createdBy: post?.post.createdBy || '',
     },
   });
 
@@ -46,7 +46,7 @@ export default function PostForm({ post }) {
   }, [title, setValue, slugTransform]);
 
   const newPost = async (data) => {
-    //console.log(data);
+    console.log(data);
     if (post) {
       const file = data.featuredImage[0]
         ? await service.uploadFile(data.image[0])
@@ -66,12 +66,13 @@ export default function PostForm({ post }) {
         }
       }
     } else {
-      const file = await service.uploadFile(data.image[0]);
+      
+      const file = await service.uploadFile(data.featuredImage[0]);
       if (file) {
         const createdPost = await service.createPost({
           ...data,
           featuredImage: file.$id,
-          userId: userData.$id,
+          createdBy: userData.userData.$id,
         });
         if (createdPost) {
           navigate(`/post/${createdPost.$id}`);

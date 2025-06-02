@@ -61,7 +61,7 @@ export default function PostForm({ post }) {
             featuredImage: file.$id,
           });
           if (updatedPost) {
-            navigate(`/post/${updatedPost.$id}`);
+            navigate(`/post/${data.slug}`);
           }
         }
       }
@@ -75,7 +75,7 @@ export default function PostForm({ post }) {
           createdBy: userData.userData.$id,
         });
         if (createdPost) {
-          navigate(`/post/${createdPost.$id}`);
+          navigate(`/post/${data.slug}`);
         }
       }
     }

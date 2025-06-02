@@ -11,7 +11,7 @@ import store from './store/store.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Login, Signup, Dashboard, Post } from './pages/index.js';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { ProtectedRoute } from './components/index.js';
+import { ProtectedRoute, PostLayout } from './components/index.js';
 
 const theme = createTheme({
   palette: {
@@ -58,6 +58,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute authentication={true}>
             <Post />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'post/:postid',
+        element: (
+          <ProtectedRoute authentication={true}>
+            <PostLayout />
           </ProtectedRoute>
         ),
       },

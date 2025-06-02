@@ -5,5 +5,6 @@ import Input from './Input.jsx';
 import TinyMCE from './TinyMCE.jsx';
 import PostForm from './PostForm.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
+import PostLayout from './PostLayout.jsx';
 
-export { Header, Image, Button, Input, TinyMCE, PostForm, ProtectedRoute };
+export { Header, Image, Button, Input, TinyMCE, PostForm, ProtectedRoute , PostLayout};

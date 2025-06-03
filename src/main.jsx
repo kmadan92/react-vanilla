@@ -9,7 +9,7 @@ import App from './App.jsx';
 import { Provider } from 'react-redux';
 import store from './store/store.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Login, Signup, Dashboard, Post } from './pages/index.js';
+import { Login, Signup, Dashboard, Post, EditPostForm } from './pages/index.js';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ProtectedRoute, PostLayout } from './components/index.js';
 
@@ -66,6 +66,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute authentication={true}>
             <PostLayout />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'edit/:postid',
+        element: (
+          <ProtectedRoute authentication={true}>
+            <EditPostForm  />
           </ProtectedRoute>
         ),
       },

@@ -16,15 +16,16 @@ export default function PostForm({ post }) {
     setValue,
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: post?.post.title || '',
-      slug: post?.post.slug || '',
-      content: post?.post.content || '',
-      featuredImage: post?.post.featuredImage || '',
-      status: post?.post.status || 'active',
-      createdBy: post?.post.createdBy || '',
+      title: post?.title || '',
+      slug: post?.slug || '',
+      content: post?.content || '',
+      featuredImage: post?.featuredImage || '',
+      status: post?.status || 'active',
+      createdBy: post?.createdBy || '',
     },
   });
 
@@ -45,8 +46,22 @@ export default function PostForm({ post }) {
     setValue('slug', slugTransform(title), { shouldValidate: true });
   }, [title, setValue, slugTransform]);
 
+  useEffect(() => {
+  if (post) {
+    console.log(post)
+    reset({
+      title: post.title || '',
+      slug: post.slug || '',
+      content: post.content || '',
+      featuredImage: post.featuredImage || '',
+      status: post.status || 'active',
+      createdBy: post.createdBy || '',
+    });
+  }
+}, [post, reset]);
+
   const newPost = async (data) => {
-    console.log(data);
+    //console.log(data);
     if (post) {
       const file = data.featuredImage[0]
         ? await service.uploadFile(data.image[0])

@@ -61,10 +61,10 @@ export default function PostForm({ post }) {
 }, [post, reset]);
 
   const newPost = async (data) => {
-    //console.log(data);
+    console.log(data);
     if (post) {
       const file = data.featuredImage[0]
-        ? await service.uploadFile(data.image[0])
+        ? await service.uploadFile(data.featuredImage[0])
         : null;
 
       if (file) {
@@ -74,6 +74,7 @@ export default function PostForm({ post }) {
           const updatedPost = await service.updatePost(post.$id, {
             ...data,
             featuredImage: file.$id,
+            updatedSlug: data.$id
           });
           if (updatedPost) {
             navigate(`/post/${data.slug}`);
@@ -115,19 +116,37 @@ export default function PostForm({ post }) {
               <p className="text-red-500 text-sm">{errors.title.message}</p>
             )}
 
-            <TinyMCE
+          {post ? 
+          <TinyMCE
+              name="content"
+              control={control}
+              label="CONTENT"
+              initialValue={post.content}
+              {...register('content', { required: 'Content is required' })}
+            />
+          : 
+          <TinyMCE
               name="content"
               control={control}
               label="CONTENT"
               {...register('content', { required: 'Content is required' })}
             />
+          }
+
+            {/* <TinyMCE
+              name="content"
+              control={control}
+              label="CONTENT"
+              {...register('content', { required: 'Content is required' })}
+            /> */}
           </div>
 
           {errors.content && (
             <p className="text-red-500 text-sm">{errors.content.message}</p>
           )}
-
-          <div className="w-1/2 flex flex-col gap-4">
+           
+           
+           <div className="w-1/2 flex flex-col gap-4">
             <Input
               type="text"
               labelChildren="SLUG"

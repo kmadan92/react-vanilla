@@ -3,7 +3,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { Controller } from 'react-hook-form';
 import conf from '../conf/conf.prod.js';
 
-export default function TinyMCE({ name, control, label, ...props }) {
+export default function TinyMCE({ name, control, label, initialValue,...props }) {
   return (
     <div className="w-full">
       {label && <label className="text-gray-600 font-bold">{label}</label>}
@@ -73,7 +73,7 @@ export default function TinyMCE({ name, control, label, ...props }) {
                   Promise.reject('See docs to implement AI Assistant')
                 ),
             }}
-            initialValue="Welcome to TinyMCE!"
+            initialValue={initialValue ? initialValue : "Welcome To Tiny Editor"}
             onEditorChange={onChange}
             {...props}
           />

@@ -133,12 +133,6 @@ export default function PostForm({ post }) {
             />
           }
 
-            {/* <TinyMCE
-              name="content"
-              control={control}
-              label="CONTENT"
-              {...register('content', { required: 'Content is required' })}
-            /> */}
           </div>
 
           {errors.content && (

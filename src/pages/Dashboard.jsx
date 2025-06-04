@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import LibraryAddSharpIcon from '@mui/icons-material/LibraryAddSharp';
 import { useNavigate } from 'react-router-dom';
+import service from '../services/config';
+import { Grid } from '@mui/material';
+import { PostCard } from '../components/index.js';
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const [isPost, setIsPost] = useState(false)
+  const [allPosts ,setAllPosts] = useState([{}])
 
   function getGreeting() {
     const hour = new Date().getHours();
@@ -18,9 +23,25 @@ export default function Dashboard() {
     }
   }
 
+  useEffect(()=>{
+
+    const all_posts = async() =>{
+    const posts = await service.getPosts()
+    if(posts){
+      setIsPost(true)
+      setAllPosts(posts.documents)
+    }
+    console.log(posts)
+    }
+
+    all_posts()
+
+  },[])
+
   return (
     <>
-      <div className="w-full h-screen mt-10">
+    {!isPost ? 
+    <div className="w-full h-screen mt-10">
         <label className=" m-4 font-mono text-4xl block text-blue-950">
           {getGreeting()},
         </label>
@@ -43,6 +64,18 @@ export default function Dashboard() {
           New Post
         </Button>
       </div>
+    :
+    <div className="w-full h-screen mt-10 ml-20 flex flex-row justify-evenly">
+ <Grid container spacing={3}>
+      {allPosts.map((post) => (
+        <Grid item xs={12} sm={6} md={4} key={post.$id}>
+          <PostCard post={post} />
+        </Grid>
+      ))}
+    </Grid>
+    </div>
+    }
+      
     </>
   );
 }

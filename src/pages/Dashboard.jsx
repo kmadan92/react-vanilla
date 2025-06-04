@@ -4,12 +4,13 @@ import LibraryAddSharpIcon from '@mui/icons-material/LibraryAddSharp';
 import { useNavigate } from 'react-router-dom';
 import service from '../services/config';
 import { Grid } from '@mui/material';
-import { PostCard } from '../components/index.js';
+import { PostCard, Image } from '../components/index.js';
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [isPost, setIsPost] = useState(false)
   const [allPosts ,setAllPosts] = useState([{}])
+  const [loading, setLoading] = useState(true);
 
   function getGreeting() {
     const hour = new Date().getHours();
@@ -30,13 +31,24 @@ export default function Dashboard() {
     if(posts){
       setIsPost(true)
       setAllPosts(posts.documents)
+      setLoading(false)
+      return
     }
+    setLoading(false)
     console.log(posts)
     }
 
     all_posts()
 
   },[])
+
+  if (loading) {
+      return (
+        <div className="w-screen h-screen flex flex-col items-center justify-center">
+          <Image src="https://i.gifer.com/8CLc.gif" className="h-25" />
+        </div>
+      );
+    }
 
   return (
     <>

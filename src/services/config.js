@@ -79,12 +79,16 @@ export class Service {
     }
   }
 
-  async getPosts(queries = [Query.equal('status', 'active')]) {
+  async getPosts(queries = [Query.equal('status', 'active')], limit = 9, offset = 0) {
     try {
       return await this.databases.listDocuments(
         conf.appwriteDbId,
         conf.appwriteCollectionId,
-        queries
+        [...queries,
+        Query.limit(limit),
+        Query.offset(offset),
+        Query.orderDesc('$createdAt')
+        ]
       );
     } catch (error) {
       console.log('Appwrite serive :: getPosts :: error', error);
